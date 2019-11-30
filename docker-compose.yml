@@ -1,0 +1,51 @@
+version: '3.7'
+services:
+  # ===============================================
+  # Apacheの設定
+  # ===============================================
+  apache:
+    # コンテナの中を操作するコマンドが書かれている「Dockerfile」までのディレクトリパス
+    build: './data/apache'
+    # 自分のPCとコンテナをつなぐ設定
+    volumes:
+      - ./data/apache/conf.d:/etc/httpd/conf.d
+      - ./htdocs/:/var/www/html/
+    # 自分のPCからコンテナにつなぐときのポート番号
+    ports:
+      - 8080:80
+    # phpfpmのコンテナとつなぐよ！
+    depends_on: 
+      - phpfpm
+
+  
+  # ===============================================
+  # PHP-FPMの設定（PHPの設定）
+  # ===============================================
+  phpfpm:
+    build: './data/phpfpm'
+    volumes:
+      - ./data/phpfpm/php-fpm.d/:/etc/php-fpm.d
+      - ./htdocs/:/var/www/html/
+    ports:
+      - 9000:9000
+    depends_on: 
+      - mysql
+
+
+  # ===============================================
+  # MySQLの設定
+  # ===============================================
+  mysql:
+    image: mysql:8
+    ports:
+      - "3306:3306"
+    user: "1000:50"
+    command: --innodb-use-native-aio=0
+    volumes:
+      - ./data/mysql/data/:/var/lib/mysql
+      - ./data/mysql/conf/:/etc/mysql/conf.d/
+    environment:
+      MYSQL_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
