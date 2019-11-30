@@ -47,3 +47,6 @@ services:
     environment:
       MYSQL_PORT: 3306
       MYSQL_ROOT_PASSWORD: root
+      # このDBはmysql内でデフォルトで作成され
+      # rootと一般ユーザ( `MYSQL_USER` )がグローバル権限を持ってる
+      MYSQL_DATABASE: docker
