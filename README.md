@@ -57,7 +57,11 @@ docker-compose exec mysql bash
 
 ### Windows 10 Pro
 
-未実証
+- docker for windowsで起動確認
+- volumesマウント系で少し手こずったので、注意
+    - [Docker for Windowsで快適な環境を得るまでの そこそこ長い闘い](https://qiita.com/YukiMiyatake/items/73c7d6c4f2c9739ebe60)
+    - [Windows10でESET＋Laradocのセットアップ時にエラー「Drive sharing seems blocked by a firewall」が出た場合の対処。](https://mrkmyki.com/2018/11/24/windows10%E3%81%A7eset%EF%BC%8Blaradoc%E3%81%AE%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E6%99%82%E3%81%AB%E3%82%A8%E3%83%A9%E3%83%BC%E3%80%8Cdrive-sharing-seems-blocked-by-a-firewall/)
+    - [Windows10 × Docker for Windows トラブルシューティング](https://qiita.com/takeru08ma/items/7878a293c55a9902f404)
 
 
 ### Linux 
